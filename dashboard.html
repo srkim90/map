@@ -1,68 +1,65 @@
-<!DOCTYPE html>
 <html>
+
 <head>
-    <link rel="stylesheet" href="css/go_app_style3.css">
+	<link rel="stylesheet" href="css/go_app_style3.css">
 	<link rel="stylesheet" href="css/go_home_dashboard.css">
 </head>
+
 <body>
-	<div class="go-gadget-content">
-		{{#isEhrActive}}
-		<section class="gnb_title">
-			<h1><a href="{{contextRoot}}app/ehr" style="letter-spacing:1px">{{appName}}</a></h1>
-		</section>
-		
-		{{#timeline.active}}
-		<section class="function function_attend"><!--출근 버튼 누르기 전 표현-->
-			<p class="date" id="date"></p>
-			<p class="time" id="timer"></p>
-			<div class="log_view_wrap">
-				<ul class="log_view">
-					<li>
-						<dl>
-							<dt>{{lang.label_clockIn}}</dt>
-							<dd id="workInTime">{{lang.label_unregistered}}</dd>
-						</dl>
-					</li>
-					<li>
-						<dl>
-							<dt>{{lang.label_clockOut}}</dt>
-							<dd id="workOutTime">{{lang.label_unregistered}}</dd>
-						</dl>
-					</li>
-					<li>
-						<dl>
-							<dt>{{lang.label_weekSum}}</dt>
-							<dd id="weeklyTotalTime">0h 0m 0s</dd>
-						</dl>
-					</li>
-				</ul>
-			</div>
-			<div class="vertical_bar"></div>
-			<div class="function_btn_wrap">
-				<a class="btn_function btn_function_s" id="workIn" ><span class="txt">{{lang.label_clockInTime}}</span></a><!--btn이 두개일 경우 멀티 클래스 적용 btn_function_s-->
-				<a class="btn_function btn_function_s" id="workOut"><span class="txt">{{lang.label_clockOutTime}}</span></a>
-			</div>
-			<div class="works_state">
-				<a class="btn_function" id="changeStatus"><!--클릭 시, 클래스명 on 추가-->
-					<span class="txt">{{lang.label_status_change}} &nbsp; &nbsp;<span class="ic_side ic_show_down"></span></span>
-				</a>
-				<div el-backdrop class="layer_transition" style="z-index: 100; display: none;">
-					<div class="ui-menu-container container">
-						<div class="content">
-							<div class="row_wrap menuitem my-todo-list foldable">
-								<ul class="submenu-list" id="statusList" style="max-height: 200px; overflow-y: auto;">
-								</ul>
+	<div id="go-dashboard-1" class="go-dashboard go_dashboard_5_1">
+		<div class="go-gadget-column gadget-col-1 gadget_section1 layout_fixed" data-columnid="1">
+			<div class="go-gadget go-gadget-50 gadget_design_border">
+				<div class="go-gadget-content timeline_contents_wrap">
+					<div class="gadget_design_wrap">
+						<div class="attend_contents_wrap2">
+							<p class="txt">2022년 7월 13일 (수) <span class="time" id="timelineGadgetTime">10:59:28</span>
+							</p>
+							<div class="ehr_stat_data summary">
+								<p class="stat_tit">68<b>h</b> 40<b>m</b></p>
+								<div class="type_flexible_summary">
+									<div class="wrap_progress">
+										<div class="time min" title="07월 총 최소 근무시간은 168h입니다." style="left:76%">최소 168h
+										</div>
+										<div class="bar" style="left:76%"></div>
+										<div class="min_today" style="left:29%" title=""></div>
+										<div class="time max" title="07월 총 최대 근무시간은 218h 24m입니다.">최대 218h 24m</div>
+										<div class="progress">
+											<div class="part_default" title="선택근무" style="width:31%"></div>
+											<div class="part_overtime" title="초과근무(연장)" style="width:0%"></div>
+											<div class="part_approval" title="승인근무(연장)" style="width:0%"></div>
+										</div>
+									</div>
+								</div>
+								<div class="log_view_wrap">
+									<ul class="log_view">
+										<li>
+											<dl>
+												<dt>출근시간</dt>
+												<dd id="workInTime">09:36:28</dd>
+											</dl>
+										</li>
+										<li>
+											<dl>
+												<dt>퇴근시간</dt>
+												<dd id="workOutTime">미등록</dd>
+												<dl> </dl>
+											</dl>
+										</li>
+										<li>
+											<dl>
+												<dt>앞으로 매일 평균</dt>
+												<dd>7h 38m근무 필요</dd>
+												<dl> </dl>
+											</dl>
+										</li>
+									</ul>
+								</div>
 							</div>
-							<hr>
+
 						</div>
 					</div>
 				</div>
-		
-		
 			</div>
-		</section>
+		</div>
 	</div>
-
-
-	
 </body>
