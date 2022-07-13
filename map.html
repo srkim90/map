@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="popup.css">
+    <meta charset="utf-8">
+    <title>라이딩 로그 시각화</title>
+</head>
+
+<div id="map" style="width:100%;height:1000px;"></div>    
+
+
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=	8d0f32c0be4b828814fb72a585e0eef4"></script>
+
+<script>
+
+
+N_DLAY_DISPLAY_STEP = 600
+N_SLEEP_MS = 30
+N_OVERLAY_SLEEP = 750
+N_END_DRAW_SLEEP = 1000
+N_INIT_SLEEP_MS = 1000
+INITIAL_MAP_LEVEL = 11
+MOVE_MAP_LEVEL = 8
+ITEM_NAME = "2022-06-19_01-21-02"
+
+
+
+var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
+    mapOption = { 
+        center: new kakao.maps.LatLng(36.53013546303083, 128.26228602338333), // 지도의 중심좌표
+        level: INITIAL_MAP_LEVEL, // 지도의 확대 레벨,
+    };  
+
+var map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
+
+
+//map.addOverlayMapTypeId(kakao.maps.MapTypeId.ROADMAP);
+map.addOverlayMapTypeId(kakao.maps.MapTypeId.TERRAIN);
+//map.addOverlayMapTypeId(kakao.maps.MapTypeId.OVERLAY);
+
+
+var marker = new kakao.maps.Marker({ 
+    position: map.getCenter() 
+}); 
+
+locationMarker = []
+fetch(ITEM_NAME + "_location.json")
+  .then((response) => response.json())
+  .then(function(jsonData) { 
+        locationMarker = jsonData
+        for (var marker of locationMarker) { 
+            marker['checked'] = false
+        }
+    }
+  );
+
+var content = ""
+fetch('popup.html')
+  .then((response) => response.text())
+  .then(function(text) { 
+    content = text
+  }
+  );
+
+
+fetch(ITEM_NAME + ".json")
+  .then((response) => response.json())
+  .then(function(jsonData) { 
+        var data = jsonData['data']
+        drawAll(data, 0.0, 100.0,  '#000000', 0.5, null, null) 
+        setTimeout(onTimeout, N_INIT_SLEEP_MS, 0, data, null)
+    }
+  );
+
+</script>
+<script src="js/util.js"></script>
+<script src="js/marker.js"></script>
+<script src="js/draw.js"></script>
+<script src="js/handler.js"></script>
+<script src="js/map.js"></script>
+<script src="js/popup.js"></script>
+<body>
+
+</body>
+</html>
