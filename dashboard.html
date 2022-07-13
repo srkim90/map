@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="css/go_app_style3.css">
+	<link rel="stylesheet" href="css/go_home_dashboard.css">
+</head>
+<body>
+	<div class="go-gadget-content">
+		{{#isEhrActive}}
+		<section class="gnb_title">
+			<h1><a href="{{contextRoot}}app/ehr" style="letter-spacing:1px">{{appName}}</a></h1>
+		</section>
+		
+		{{#timeline.active}}
+		<section class="function function_attend"><!--출근 버튼 누르기 전 표현-->
+			<p class="date" id="date"></p>
+			<p class="time" id="timer"></p>
+			<div class="log_view_wrap">
+				<ul class="log_view">
+					<li>
+						<dl>
+							<dt>{{lang.label_clockIn}}</dt>
+							<dd id="workInTime">{{lang.label_unregistered}}</dd>
+						</dl>
+					</li>
+					<li>
+						<dl>
+							<dt>{{lang.label_clockOut}}</dt>
+							<dd id="workOutTime">{{lang.label_unregistered}}</dd>
+						</dl>
+					</li>
+					<li>
+						<dl>
+							<dt>{{lang.label_weekSum}}</dt>
+							<dd id="weeklyTotalTime">0h 0m 0s</dd>
+						</dl>
+					</li>
+				</ul>
+			</div>
+			<div class="vertical_bar"></div>
+			<div class="function_btn_wrap">
+				<a class="btn_function btn_function_s" id="workIn" ><span class="txt">{{lang.label_clockInTime}}</span></a><!--btn이 두개일 경우 멀티 클래스 적용 btn_function_s-->
+				<a class="btn_function btn_function_s" id="workOut"><span class="txt">{{lang.label_clockOutTime}}</span></a>
+			</div>
+			<div class="works_state">
+				<a class="btn_function" id="changeStatus"><!--클릭 시, 클래스명 on 추가-->
+					<span class="txt">{{lang.label_status_change}} &nbsp; &nbsp;<span class="ic_side ic_show_down"></span></span>
+				</a>
+				<div el-backdrop class="layer_transition" style="z-index: 100; display: none;">
+					<div class="ui-menu-container container">
+						<div class="content">
+							<div class="row_wrap menuitem my-todo-list foldable">
+								<ul class="submenu-list" id="statusList" style="max-height: 200px; overflow-y: auto;">
+								</ul>
+							</div>
+							<hr>
+						</div>
+					</div>
+				</div>
+		
+		
+			</div>
+		</section>
+	</div>
+
+
+	
+</body>

@@ -25,10 +25,6 @@ function calcCenterLocation(jsonData, endDrawRatio) {
     }
 }
 
-
-
-
-
 function checkMarker(markers, jsonData, sIdx, eIdx) {
     isMArked = false
     if (sIdx == null || eIdx == null || markers == null) {
